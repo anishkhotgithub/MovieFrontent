@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.anish.dao.MovieDAO;
+import com.anish.dao.SeasonDAO;
 import com.anish.model.Movie;
+import com.anish.model.Seasons;
 
 @Controller
 @RequestMapping("/movies")
@@ -18,6 +20,9 @@ public class MovieController
 {
 	@Autowired
 	MovieDAO movieDAO;
+	
+	@Autowired
+	SeasonDAO sdao;
 	
 	@RequestMapping("/")
 	public String m1(ModelMap map)
@@ -47,9 +52,22 @@ public class MovieController
 	@RequestMapping("/movieid/{id}")
 	public String m5(@PathVariable("id") int movieid,ModelMap map)
 	{
+		map.addAttribute("seas",sdao.dispSeasons(movieid));
+		map.addAttribute("season",new Seasons());
 		map.addAttribute("movie",movieDAO.dispMovie(movieid));
 		return "dispMovie";
 	}
+	
+	
+	@PostMapping("/addseason/{mid}")
+	public String m2(@PathVariable("mid") int mid, @ModelAttribute("season") Seasons seasons)
+	{
+		Movie movie = movieDAO.dispMovie(mid);
+		seasons.setMovie(movie);
+		sdao.addSeason(seasons);
+		return "redirect:/movies/";
+	}
+	
 	@RequestMapping("/delete/{id}")
 	public String m6(@PathVariable("id") int movieid)
 	{

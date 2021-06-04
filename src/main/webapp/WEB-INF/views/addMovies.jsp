@@ -28,7 +28,11 @@
 			</div>
 			<div class="form-group">
 				<label>Image Url</label>
-				<sp:input path="movieimageurl" placeholder="Enter Image Url" class="form-control"/>
+				<sp:textarea path="movieimageurl" placeholder="Enter Image Url" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>Trailer Url</label>
+				<sp:textarea path="trailer" placeholder="Enter trailer Url" class="form-control"/>
 			</div>
 			<div class="form-group">
 				<input type="submit" value="Add Movie" class="btn btn-primary btn-block"/>
@@ -60,7 +64,11 @@
 				<sp:input path="movieimageurl" placeholder="Enter Image Url" class="form-control"/>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="Add Movie" class="btn btn-primary btn-block"/>
+				<label>Trailer Url</label>
+				<sp:input path="trailer" placeholder="Enter trailer Url" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Update Movie" class="btn btn-primary btn-block"/>
 				<input type="reset" value="Reset" class="btn btn-danger btn-block"/>
 			</div>
 		</sp:form>
