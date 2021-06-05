@@ -22,13 +22,25 @@ public class SeasonController
 	@Autowired
 	MovieDAO mdao;
 	
-	/*
-	 * @RequestMapping("/add") public String m1(ModelMap map) {
-	 * map.addAttribute("season",new Seasons()); return "addSeason"; }
-	 * 
-	 * @PostMapping("/addseason/{mid}") public String m2(@PathVariable("mid") int
-	 * mid, @ModelAttribute("season") Seasons seasons) { Movie movie =
-	 * mdao.dispMovie(mid); seasons.setMovie(movie); sdao.addSeason(seasons); return
-	 * "allMovies"; }
-	 */
+	@RequestMapping("/delete/{id}")
+	public String m6(@PathVariable("id") int sid)
+	{
+		Seasons s=new Seasons();
+		s.setSid(sid);;
+		sdao.delSeason(s);
+		return "redirect:/movies/";
+	}
+	@RequestMapping("/edit/{id}")
+	public String m7(@PathVariable("id") int sid,ModelMap map)
+	{
+		Seasons s=sdao.dispSeason(sid);
+		map.addAttribute("season",s);
+		return "addSeason";
+	}
+	@PostMapping("/update")
+	public String m4(@ModelAttribute("season") Seasons season)
+	{
+		sdao.updSeason(season);
+		return "redirect:/movies/";
+	}
 }

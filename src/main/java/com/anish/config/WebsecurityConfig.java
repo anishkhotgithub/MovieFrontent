@@ -46,6 +46,8 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
 	  .antMatchers("/movies/register/**").hasAuthority("admin")
 	  .antMatchers("/movies/edit/**").hasAuthority("admin")
 	  .antMatchers("/movies/delete/**").hasAuthority("admin")
+	  .antMatchers("/seasons/delete/**").hasAuthority("admin")
+	  .antMatchers("/seasons/edit/**").hasAuthority("admin")
       .and().formLogin()
       
       .defaultSuccessUrl("/")
